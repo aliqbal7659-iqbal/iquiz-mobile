@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:iquiz/injection.dart' as di;
+import 'package:iquiz/src/core/themes/app_theme.dart';
 import 'package:iquiz/src/features/splash/pages/splash_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  di.init();
   runApp(const MyApp());
 }
 
@@ -11,8 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      title: 'iQuiz',
+      theme: AppTheme.lightThemeMode,
       home: const SplashPage(),
     );
   }
