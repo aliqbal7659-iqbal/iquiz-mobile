@@ -1,16 +1,39 @@
-# iquiz
+# 📱 iQuiz
+iQuiz merupakan aplikasi pembelajaran untuk persiapan unbk. aplikasi ini menyediakan materi dan latihan soal serta try-out.
 
-A new Flutter project.
+## 🎨 UI/UX Design
+Bagian ini menampilkan proses desain sebelum masuk ke tahap pengembangan.
 
-## Getting Started
+### UI/UX Screen Previews
+![Screenshot UI/UX iQuiz](https://github.com/aliqbal7659-iqbal/iquiz-mobile/blob/main/ui-ux.png)
+> **Link Figma:** [Klik di sini untuk melihat Prototype](https://www.figma.com/design/mYWuK67jbWWBql1B0POKt7/iQuiz-Design?node-id=0-1&t=vkpll5GAZXZORhrK-1)
 
-This project is a starting point for a Flutter application.
+## 🚀 Fitur Utama
+- ✨ **Autentikasi:** Login & Register menggunakan *Local Storage*.
+- 📚 **Materi:** Modul pembelajaran terstruktur untuk memudahkan pemahaman.
+- 📝 **Quiz:** Fitur *Try-out* dan latihan soal untuk menguji kemampuan.
+- 🎨 **Dark Mode:** Mendukung tema gelap dan terang untuk kenyamanan mata.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Tech Stack
+- **Framework:** [Flutter](https://flutter.dev)
+- **State Management:** [Provider / Bloc / GetX]
+- **Local DB:** [SharedPreferences]
+- **Local API:** [Local Json]
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🏁 Cara Menjalankan Proyek
+1. Clone repositori ini:
+   ```bash
+   git clone https://github.com
+   ```
+2. Masuk ke direktori:
+   ```bash
+   cd project-name
+   ```
+3. Instal dependensi:
+   ```bash
+   flutter pub get
+   ```
+4. Jalankan aplikasi:
+   ```bash
+   flutter run
+   ```
