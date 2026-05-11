@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iquiz/src/features/register/presentation/pages/register_page.dart';
 
 class NavigateToRegisterHelper {
   final BuildContext context;
@@ -7,6 +8,8 @@ class NavigateToRegisterHelper {
 
   void execute() {
     if (!context.mounted) return;
-    //TODO; navigasi ke halaman register
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => RegisterPage()));
   }
 }

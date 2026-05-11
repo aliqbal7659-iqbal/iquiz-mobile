@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
+import 'package:iquiz/src/features/login/domain/helper/navigate_to_login.dart';
 import 'package:iquiz/src/features/login/domain/utils/submit_login.dart';
-import 'package:iquiz/src/features/register/domain/helper/navigate_to_register.dart';
 import 'package:iquiz/src/shared/domain/utils/validate_email.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
@@ -11,15 +11,16 @@ import 'package:iquiz/src/shared/presentation/widgets/iquiz_title_widget.dart';
 import 'package:iquiz/src/shared/presentation/widgets/text_input_widget.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -58,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Masuk",
+                    "Daftar",
                     style: AppFont.interTitleBold.copyWith(
                       color: themeProvider.themeMode == ThemeMode.dark
                           ? AppPalette.textPrimaryDark
@@ -66,6 +67,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox.square(dimension: 24),
+
+                  /// Text input email
+                  TextInputWidget(
+                    hint: "nama lengkap",
+                    controller: nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Nama lengkap tidak boleh kosong";
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox.square(dimension: 16),
 
                   /// Text input email
                   TextInputWidget(
@@ -95,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       ButtonWidget(
-                        label: "Masuk",
+                        label: "Daftar",
                         isExpanded: true,
                         onPressed: () =>
                             SubmitLoginUtils(formKey: formKey).execute(),
@@ -107,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                   /// tombol daftar
                   Text.rich(
                     TextSpan(
-                      text: "Belum memiliki akun? ",
+                      text: "Sudah memiliki akun? ",
                       style: AppFont.interMediumRegular.copyWith(
                         color: themeProvider.themeMode == ThemeMode.dark
                             ? AppPalette.textPrimaryDark
@@ -115,13 +129,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       children: [
                         TextSpan(
-                          text: "Daftar",
+                          text: "Login",
                           style: AppFont.interMediumBold.copyWith(
                             color: AppPalette.primary,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              NavigateToRegisterHelper(context).execute();
+                              NavigateToLoginHelper(context).execute();
                             },
                         ),
                       ],
