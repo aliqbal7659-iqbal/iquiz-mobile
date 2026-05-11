@@ -8,6 +8,5 @@ class AppFont {
   static TextStyle interSplashFont = interFont.copyWith(
     fontSize: 48,
     fontWeight: FontWeight.w500,
-    height: 150,
   );
 }
