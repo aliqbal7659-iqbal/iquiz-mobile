@@ -47,6 +47,23 @@ class AppTheme {
         backgroundColor: AppPalette.primary,
       ),
     ),
+
+    /// Appbar
+    appBarTheme: AppBarTheme(backgroundColor: AppPalette.backgroundWhite),
+
+    /// Bottom Navigation Bar
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      elevation: 0,
+      selectedIconTheme: IconThemeData(size: 24, color: AppPalette.secondary),
+      unselectedIconTheme: IconThemeData(
+        size: 24,
+        color: AppPalette.textSecondary,
+      ),
+      backgroundColor: AppPalette.backgroundWhite,
+    ),
+
+    /// Divider
+    dividerColor: AppPalette.border,
   );
 
   static final darkThemeMode = ThemeData.dark().copyWith(
