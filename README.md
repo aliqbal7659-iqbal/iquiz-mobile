@@ -17,17 +17,17 @@ Bagian ini menampilkan proses desain sebelum masuk ke tahap pengembangan.
 ## 🛠️ Tech Stack
 - **Framework:** [Flutter](https://flutter.dev)
 - **State Management:** [Provider / Bloc / GetX]
-- **Local DB:** [SharedPreferences]
+- **Local DB:** [SharedPreferences / Sqflite]
 - **Local API:** [Local Json]
 
 ## 🏁 Cara Menjalankan Proyek
 1. Clone repositori ini:
    ```bash
-   git clone https://github.com
+   git clone https://github.com/aliqbal7659-iqbal/iquiz-mobile.git
    ```
 2. Masuk ke direktori:
    ```bash
-   cd project-name
+   cd iquiz-mobile
    ```
 3. Instal dependensi:
    ```bash
