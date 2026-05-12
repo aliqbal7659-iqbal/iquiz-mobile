@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iquiz/src/features/auth/domain/helper/navigate_to_login.dart';
 import 'package:iquiz/src/shared/presentation/widgets/iquiz_title_widget.dart';
 
 class SplashPage extends StatefulWidget {
@@ -13,13 +12,13 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 800)).then((_) {
-        if (mounted) {
-          NavigateToLoginHelper(context).execute();
-        }
-      });
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   Future.delayed(const Duration(milliseconds: 800)).then((_) {
+    //     if (mounted) {
+    //       NavigateToLoginHelper(context).execute();
+    //     }
+    //   });
+    // });
   }
 
   @override

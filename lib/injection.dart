@@ -3,9 +3,11 @@ import 'package:iquiz/src/features/auth/data/datasources/auth_local_datasource.d
 import 'package:iquiz/src/features/auth/data/datasources/db/database_helper.dart';
 import 'package:iquiz/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:iquiz/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:iquiz/src/features/auth/domain/usecases/auth_check.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_login.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_register.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
 import 'package:iquiz/src/shared/data/datasources/theme_local_datasource.dart';
 import 'package:iquiz/src/shared/data/repositories/theme_repository_impl.dart';
 import 'package:iquiz/src/shared/domain/repositories/theme_repository.dart';
@@ -30,6 +32,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SaveThemeModeUsecase(sl()));
   sl.registerLazySingleton(() => AuthLogin(sl()));
   sl.registerLazySingleton(() => AuthRegister(sl()));
+  sl.registerLazySingleton(() => AuthCheck(sl()));
 
   /// Repositories
   sl.registerLazySingleton<ThemeRepository>(
@@ -49,6 +52,7 @@ Future<void> init() async {
 
   /// Blocs
   sl.registerLazySingleton(() => AuthBloc(authLogin: sl(), authRegister: sl()));
+  sl.registerLazySingleton(() => AuthCheckBloc(authCheck: sl()));
 
   /// Helper
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

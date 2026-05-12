@@ -42,4 +42,17 @@ class AuthRepositoryImpl implements AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<Either<Failure, User?>> checkAuthentication() async {
+    try {
+      final result = await localDatasource.checkAuthenticated();
+      if (result == null) {
+        return Left(DatabaseFailure("Anda terlogout"));
+      }
+      return Right(result.toEntity());
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
 }
