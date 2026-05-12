@@ -15,12 +15,21 @@ class AppTheme {
         color: AppPalette.textSecondary,
       ),
       errorStyle: AppFont.interSmallRegular.copyWith(color: AppPalette.redMain),
+      outlineBorder: BorderSide(color: AppPalette.border),
       border: OutlineInputBorder(
+        borderSide: BorderSide(color: AppPalette.border),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppPalette.border),
         borderRadius: BorderRadius.circular(8),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppPalette.secondary),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppPalette.redMain),
         borderRadius: BorderRadius.circular(8),
       ),
       errorBorder: OutlineInputBorder(

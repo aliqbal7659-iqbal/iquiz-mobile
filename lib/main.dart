@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iquiz/injection.dart' as di;
 import 'package:iquiz/src/core/themes/app_theme.dart';
+import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/splash/pages/splash_page.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,15 +24,18 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => di.sl<ThemeProvider>()),
+        BlocProvider(create: (context) => di.sl<AuthBloc>()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
-          return MaterialApp(
-            title: 'iQuiz',
-            themeMode: themeProvider.themeMode,
-            theme: AppTheme.lightThemeMode,
-            darkTheme: AppTheme.darkThemeMode,
-            home: const SplashPage(),
+          return ToastificationWrapper(
+            child: MaterialApp(
+              title: 'iQuiz',
+              themeMode: themeProvider.themeMode,
+              theme: AppTheme.lightThemeMode,
+              darkTheme: AppTheme.darkThemeMode,
+              home: const SplashPage(),
+            ),
           );
         },
       ),

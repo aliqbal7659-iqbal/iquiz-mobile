@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iquiz/src/features/login/domain/helper/navigate_to_login.dart';
+import 'package:iquiz/src/features/auth/domain/helper/navigate_to_login.dart';
 import 'package:iquiz/src/shared/presentation/widgets/iquiz_title_widget.dart';
 
 class SplashPage extends StatefulWidget {

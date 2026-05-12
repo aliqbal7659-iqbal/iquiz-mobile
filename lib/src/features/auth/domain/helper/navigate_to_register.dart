@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iquiz/src/features/register/presentation/pages/register_page.dart';
+import 'package:iquiz/src/features/auth/presentation/pages/register_page.dart';
 
 class NavigateToRegisterHelper {
   final BuildContext context;

@@ -1,26 +1,30 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
-import 'package:iquiz/src/features/login/domain/helper/navigate_to_login.dart';
-import 'package:iquiz/src/features/login/domain/utils/submit_login.dart';
+import 'package:iquiz/src/features/auth/domain/utils/submit_login.dart';
+import 'package:iquiz/src/features/auth/domain/helper/navigate_to_register.dart';
+import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/domain/utils/validate_email.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
 import 'package:iquiz/src/shared/presentation/widgets/iquiz_title_widget.dart';
 import 'package:iquiz/src/shared/presentation/widgets/text_input_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -59,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Daftar",
+                    "Masuk",
                     style: AppFont.interTitleBold.copyWith(
                       color: themeProvider.themeMode == ThemeMode.dark
                           ? AppPalette.textPrimaryDark
@@ -67,19 +71,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox.square(dimension: 24),
-
-                  /// Text input email
-                  TextInputWidget(
-                    hint: "nama lengkap",
-                    controller: nameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Nama lengkap tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox.square(dimension: 16),
 
                   /// Text input email
                   TextInputWidget(
@@ -106,22 +97,54 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox.square(dimension: 16),
 
                   /// tombol masuk
-                  Row(
-                    children: [
-                      ButtonWidget(
-                        label: "Daftar",
-                        isExpanded: true,
-                        onPressed: () =>
-                            SubmitLoginUtils(formKey: formKey).execute(),
-                      ),
-                    ],
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      final isCurrent =
+                          ModalRoute.of(context)?.isCurrent ?? false;
+                      if (isCurrent) {
+                        if (state is AuthSuccess) {
+                          ShowToastHelper(
+                            context: context,
+                            message: state.message,
+                            type: ToastificationType.success,
+                          ).execute();
+                          logger.i(state.message);
+                        } else if (state is AuthFailure) {
+                          ShowToastHelper(
+                            context: context,
+                            message: state.message,
+                            type: ToastificationType.error,
+                          ).execute();
+                          logger.e(state.message);
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is AuthInProgress) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return Row(
+                        children: [
+                          ButtonWidget(
+                            label: "Masuk",
+                            isExpanded: true,
+                            onPressed: () => SubmitLoginUtils(
+                              context,
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ).execute(),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox.square(dimension: 16),
 
                   /// tombol daftar
                   Text.rich(
                     TextSpan(
-                      text: "Sudah memiliki akun? ",
+                      text: "Belum memiliki akun? ",
                       style: AppFont.interMediumRegular.copyWith(
                         color: themeProvider.themeMode == ThemeMode.dark
                             ? AppPalette.textPrimaryDark
@@ -129,13 +152,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       children: [
                         TextSpan(
-                          text: "Login",
+                          text: "Daftar",
                           style: AppFont.interMediumBold.copyWith(
                             color: AppPalette.primary,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              NavigateToLoginHelper(context).execute();
+                              NavigateToRegisterHelper(context).execute();
                             },
                         ),
                       ],
