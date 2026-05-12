@@ -12,6 +12,12 @@ final class AuthSuccess extends AuthState {
   AuthSuccess({required this.message});
 }
 
+final class AuthLogOutSuccess extends AuthState {
+  final String message;
+
+  AuthLogOutSuccess({required this.message});
+}
+
 final class AuthFailure extends AuthState {
   final String message;
 

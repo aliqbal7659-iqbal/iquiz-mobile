@@ -14,3 +14,5 @@ final class AuthRegistered extends AuthEvent {
 
   AuthRegistered(this.user);
 }
+
+final class AuthLoggedOut extends AuthEvent {}

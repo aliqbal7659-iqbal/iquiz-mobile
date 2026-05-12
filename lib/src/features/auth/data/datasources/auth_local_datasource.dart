@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class AuthLocalDataSource {
   Future<String> registerUser(UserTable user);
   Future<String> loginUser({required String email, required String password});
+  Future<String> logout();
   Future<UserTable?> checkAuthenticated();
 }
 
@@ -43,6 +44,17 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       return "Daftar Berhasil!";
     } on DatabaseException catch (e) {
       throw DatabaseException(e.message);
+    } catch (e) {
+      throw DatabaseException(e.toString());
+    }
+  }
+
+  @override
+  Future<String> logout() async {
+    try {
+      final prefs = SharedPreferencesAsync();
+      await prefs.remove('user');
+      return "Logout Berhasil";
     } catch (e) {
       throw DatabaseException(e.toString());
     }

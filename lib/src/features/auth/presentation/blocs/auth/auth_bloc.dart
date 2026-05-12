@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_login.dart';
+import 'package:iquiz/src/features/auth/domain/usecases/auth_logout.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_register.dart';
 
 part 'auth_event.dart';
@@ -9,8 +10,13 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthLogin authLogin;
   final AuthRegister authRegister;
-  AuthBloc({required this.authLogin, required this.authRegister})
-    : super(AuthInitial()) {
+  final AuthLogout authLogout;
+
+  AuthBloc({
+    required this.authLogin,
+    required this.authRegister,
+    required this.authLogout,
+  }) : super(AuthInitial()) {
     on<AuthLoggedIn>((event, emit) async {
       emit(AuthInProgress());
       await Future.delayed(const Duration(milliseconds: 800));
@@ -33,6 +39,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       resp.fold(
         (l) => emit(AuthFailure(message: l.message)),
         (r) => emit(AuthSuccess(message: r)),
+      );
+    });
+
+    on<AuthLoggedOut>((event, emit) async {
+      emit(AuthInProgress());
+
+      final resp = await authLogout.execute();
+      resp.fold(
+        (l) => emit(AuthFailure(message: l.message)),
+        (r) => emit(AuthLogOutSuccess(message: r)),
       );
     });
   }

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_check.dart';
 
@@ -15,7 +14,6 @@ class AuthCheckBloc extends Bloc<AuthCheckEvent, AuthCheckState> {
         await Future.delayed(const Duration(seconds: 2));
       }
       final resp = await authCheck.execute();
-      logger.i(resp);
       resp.fold(
         (l) => emit(AuthUnauthenticated()),
         (r) => emit(AuthAuthenticated(user: r)),
