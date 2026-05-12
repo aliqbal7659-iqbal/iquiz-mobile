@@ -6,11 +6,13 @@ class ButtonWidget extends StatelessWidget {
   final void Function()? onPressed;
   final String label;
   final bool isExpanded;
+  final ButtonStyle? style;
   const ButtonWidget({
     super.key,
     this.onPressed,
     required this.label,
     this.isExpanded = false,
+    this.style,
   });
 
   @override
@@ -20,6 +22,7 @@ class ButtonWidget extends StatelessWidget {
 
   OutlinedButton _buildButton() {
     return OutlinedButton(
+      style: style,
       onPressed: onPressed,
       child: Text(
         label,

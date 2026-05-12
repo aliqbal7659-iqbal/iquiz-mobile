@@ -69,34 +69,6 @@ class _HomePageState extends State<HomePage>
           );
         },
       ),
-
-      // Container(
-
-      //   child: BlocConsumer<AuthBloc, AuthState>(
-      //     listener: (context, state) {
-      //       final isCurrent = ModalRoute.of(context)?.isCurrent ?? false;
-      //       if (isCurrent) {
-      //         if (state is AuthLogOutSuccess) {
-      //           BlocProvider.of<AuthCheckBloc>(
-      //             context,
-      //             listen: false,
-      //           ).add(AuthChecked());
-      //         }
-      //       }
-      //     },
-      //     builder: (context, state) {
-      //       return ButtonWidget(
-      //         label: "Logout",
-      //         onPressed: () {
-      //           BlocProvider.of<AuthBloc>(
-      //             context,
-      //             listen: false,
-      //           ).add(AuthLoggedOut());
-      //         },
-      //       );
-      //     },
-      //   ),
-      // ),
     );
   }
 }

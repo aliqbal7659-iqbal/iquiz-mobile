@@ -14,6 +14,7 @@ class AppPalette {
 
   /// Dark Mode Palette
   static const Color backgroundDark = Color.fromARGB(255, 0, 0, 0);
+  static const Color backgroundScaffoldDark = Color.fromARGB(255, 28, 28, 28);
   static const Color textPrimaryDark = Color(0xFFFFFFFF);
   static const Color borderDark = Color.fromARGB(255, 67, 67, 67);
 }
