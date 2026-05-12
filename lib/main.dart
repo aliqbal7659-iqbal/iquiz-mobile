@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iquiz/injection.dart' as di;
 import 'package:iquiz/src/core/themes/app_theme.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
-import 'package:iquiz/src/features/splash/pages/splash_page.dart';
+import 'package:iquiz/src/features/splash/presentation/pages/splash_page.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
