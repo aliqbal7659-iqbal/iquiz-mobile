@@ -5,29 +5,19 @@ import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
-import 'package:iquiz/src/shared/domain/utils/get_current_user.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
 import 'package:provider/provider.dart';
 
 class ProfileTabPage extends StatefulWidget {
-  const ProfileTabPage({super.key});
+  final ValueNotifier<User?> userNotifier;
+  const ProfileTabPage({super.key, required this.userNotifier});
 
   @override
   State<ProfileTabPage> createState() => _ProfileTabPageState();
 }
 
 class _ProfileTabPageState extends State<ProfileTabPage> {
-  ValueNotifier<User?> userNotifier = ValueNotifier(null);
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      userNotifier.value = await GetCurrentUser.execute();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
@@ -135,7 +125,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
 
   Widget _buildUserInfo(bool isDark) {
     return ValueListenableBuilder(
-      valueListenable: userNotifier,
+      valueListenable: widget.userNotifier,
       builder: (context, user, child) {
         return Container(
           padding: EdgeInsets.all(10),

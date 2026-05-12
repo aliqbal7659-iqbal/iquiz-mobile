@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/home/presentation/pages/home_tab_page.dart';
 import 'package:iquiz/src/features/home/presentation/pages/profile_tab_page.dart';
+import 'package:iquiz/src/shared/domain/utils/get_current_user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,25 +15,33 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final currentIndexNotifier = ValueNotifier(0);
   late TabController _tabController;
+  ValueNotifier<User?> userNotifier = ValueNotifier(null);
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      userNotifier.value = await GetCurrentUser.execute();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ValueListenableBuilder(
-        valueListenable: currentIndexNotifier,
-        builder: (context, currentIndex, child) {
-          return TabBarView(
-            controller: _tabController,
-            children: [HomeTabPage(), ProfileTabPage()],
-          );
-        },
+      body: SafeArea(
+        child: ValueListenableBuilder(
+          valueListenable: currentIndexNotifier,
+          builder: (context, currentIndex, child) {
+            return TabBarView(
+              controller: _tabController,
+              children: [
+                HomeTabPage(userNotifier: userNotifier),
+                ProfileTabPage(userNotifier: userNotifier),
+              ],
+            );
+          },
+        ),
       ),
       bottomNavigationBar: ValueListenableBuilder(
         valueListenable: currentIndexNotifier,
