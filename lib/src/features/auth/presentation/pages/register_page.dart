@@ -1,15 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/auth/domain/helper/navigate_to_login.dart';
-import 'package:iquiz/src/features/auth/domain/utils/submit_login.dart';
+import 'package:iquiz/src/features/auth/domain/utils/submit_register.dart';
+import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/domain/utils/validate_email.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
 import 'package:iquiz/src/shared/presentation/widgets/iquiz_title_widget.dart';
 import 'package:iquiz/src/shared/presentation/widgets/text_input_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -106,15 +111,49 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox.square(dimension: 16),
 
                   /// tombol masuk
-                  Row(
-                    children: [
-                      ButtonWidget(
-                        label: "Daftar",
-                        isExpanded: true,
-                        // onPressed: () =>
-                        //     SubmitLoginUtils(formKey: formKey).execute(),
-                      ),
-                    ],
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      final isCurrent =
+                          ModalRoute.of(context)?.isCurrent ?? false;
+                      if (isCurrent) {
+                        if (state is AuthSuccess) {
+                          ShowToastHelper(
+                            context: context,
+                            message: state.message,
+                            type: ToastificationType.success,
+                          ).execute();
+                          logger.i(state.message);
+                          NavigateToLoginHelper(context).execute();
+                        } else if (state is AuthFailure) {
+                          ShowToastHelper(
+                            context: context,
+                            message: state.message,
+                            type: ToastificationType.error,
+                          ).execute();
+                          logger.e(state.message);
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is AuthInProgress) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return Row(
+                        children: [
+                          ButtonWidget(
+                            label: "Daftar",
+                            isExpanded: true,
+                            onPressed: () => SubmitRegisterUtil(
+                              context,
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                              nameController: nameController,
+                            ).execute(),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox.square(dimension: 16),
 
