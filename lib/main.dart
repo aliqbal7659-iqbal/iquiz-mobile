@@ -9,6 +9,8 @@ import 'package:iquiz/src/features/home/presentation/pages/home_page.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/modul/modul_bloc.dart';
 import 'package:iquiz/src/features/splash/presentation/pages/splash_page.dart';
+import 'package:iquiz/src/features/try_out/presentation/blocs/try_out/try_out_bloc.dart';
+import 'package:iquiz/src/features/try_out/presentation/blocs/try_out_question/try_out_question_bloc.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => di.sl<MateriBloc>()),
         BlocProvider(create: (context) => di.sl<ModulBloc>()),
+        BlocProvider(create: (context) => di.sl<TryOutBloc>()),
+        BlocProvider(create: (context) => di.sl<TryOutQuestionBloc>()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {

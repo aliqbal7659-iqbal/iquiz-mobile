@@ -20,6 +20,14 @@ import 'package:iquiz/src/features/materi/domain/usecases/get_modul.dart';
 import 'package:iquiz/src/features/materi/domain/usecases/search_materi.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/modul/modul_bloc.dart';
+import 'package:iquiz/src/features/try_out/data/datasources/tryout_local_datasource.dart';
+import 'package:iquiz/src/features/try_out/data/repositories/try_out_repository_impl.dart';
+import 'package:iquiz/src/features/try_out/domain/repositories/try_out_repository.dart';
+import 'package:iquiz/src/features/try_out/domain/usecases/get_try_out.dart';
+import 'package:iquiz/src/features/try_out/domain/usecases/get_try_out_questions.dart';
+import 'package:iquiz/src/features/try_out/domain/usecases/search_try_out.dart';
+import 'package:iquiz/src/features/try_out/presentation/blocs/try_out/try_out_bloc.dart';
+import 'package:iquiz/src/features/try_out/presentation/blocs/try_out_question/try_out_question_bloc.dart';
 import 'package:iquiz/src/shared/data/datasources/theme_local_datasource.dart';
 import 'package:iquiz/src/shared/data/repositories/theme_repository_impl.dart';
 import 'package:iquiz/src/shared/domain/repositories/theme_repository.dart';
@@ -49,6 +57,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetMateri(sl()));
   sl.registerLazySingleton(() => SearchMateri(sl()));
   sl.registerLazySingleton(() => GetModul(sl()));
+  sl.registerLazySingleton(() => GetTryOut(sl()));
+  sl.registerLazySingleton(() => SearchTryOut(sl()));
+  sl.registerLazySingleton(() => GetTryOutQuestions(sl()));
 
   /// Repositories
   sl.registerLazySingleton<ThemeRepository>(
@@ -62,6 +73,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<ModulRepository>(
     () => ModulRepositoryImpl(datasource: sl()),
+  );
+  sl.registerLazySingleton<TryOutRepository>(
+    () => TryOutRepositoryImpl(datasource: sl()),
   );
 
   /// Datasource
@@ -77,6 +91,9 @@ Future<void> init() async {
   sl.registerLazySingleton<ModulLocalDatasource>(
     () => ModulLocalDataSourceImpl(),
   );
+  sl.registerLazySingleton<TryoutLocalDatasource>(
+    () => TryoutLocalDatasourceImpl(),
+  );
 
   /// Blocs
   sl.registerLazySingleton(
@@ -87,6 +104,10 @@ Future<void> init() async {
     () => MateriBloc(getMateri: sl(), searchMateri: sl()),
   );
   sl.registerLazySingleton(() => ModulBloc(getModul: sl()));
+  sl.registerLazySingleton(
+    () => TryOutBloc(getTryOut: sl(), searchTryOut: sl()),
+  );
+  sl.registerLazySingleton(() => TryOutQuestionBloc(getTryOutQuestions: sl()));
 
   /// Helper
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

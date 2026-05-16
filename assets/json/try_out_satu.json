@@ -1,0 +1,125 @@
+{
+    "message": "Success Mengambil soal Try Out 2026",
+    "data": [
+        {
+            "id": 1,
+            "question": "<p>Sebuah mobil bergerak dengan kecepatan tetap 20 m/s selama 5 detik. Jarak yang ditempuh mobil tersebut adalah...\nA. 50 m\nB. 100 m\nC. 150 m\nD. 200 m</p>",
+            "answer": "B",
+            "discussion": "Menggunakan rumus Gerak Lurus Beraturan (GLB): s = v x t. Jadi, s = 20 m/s x 5 s = 100 m."
+        },
+        {
+            "id": 2,
+            "question": "<p>Zat tunggal yang tidak dapat diuraikan lagi menjadi zat lain yang lebih sederhana melalui reaksi kimia biasa disebut...\nA. Unsur\nB. Senyawa\nC. Campuran\nD. Larutan</p>",
+            "answer": "A",
+            "discussion": "Unsur adalah zat tunggal yang paling sederhana dan tidak dapat dibagi lagi menggunakan reaksi kimia biasa."
+        },
+        {
+            "id": 3,
+            "question": "<p>Organel sel yang berfungsi sebagai tempat berlangsungnya respirasi seluler untuk menghasilkan energi adalah...\nA. Lisosom\nB. Mitokondria\nC. Ribosom\nD. Kloroplas</p>",
+            "answer": "B",
+            "discussion": "Mitokondria adalah organel sel yang berfungsi menghasilkan energi (ATP) melalui proses respirasi sel."
+        },
+        {
+            "id": 4,
+            "question": "<p>Diketahui fungsi f(x) = 3x - 5. Nilai dari f(4) adalah...\nA. 3\nB. 5\nC. 7\nD. 12</p>",
+            "answer": "C",
+            "discussion": "Substitusikan x = 4 ke dalam fungsi: f(4) = 3(4) - 5 = 12 - 5 = 7."
+        },
+        {
+            "id": 5,
+            "question": "<p>Interaksi antara lebah madu yang mengisap nektar dengan bunga yang dibantu penyerbukannya merupakan contoh simbiosis...\nA. Parasitisme\nB. Komensalisme\nC. Amensalisme\nD. Mutualisme</p>",
+            "answer": "D",
+            "discussion": "Kedua pihak saling diuntungkan; lebah mendapat makanan (nektar) dan bunga terbantu dalam proses penyerbukan."
+        },
+        {
+            "id": 6,
+            "question": "<p>Sebuah segitiga siku-siku memiliki panjang sisi tegak 6 cm dan 8 cm. Panjang sisi miring segitiga tersebut adalah...\nA. 10 cm\nB. 12 cm\nC. 14 cm\nD. 16 cm</p>",
+            "answer": "A",
+            "discussion": "Menggunakan Teorema Pythagoras: c = √(6² + 8²) = √(36 + 64) = √100 = 10 cm."
+        },
+        {
+            "id": 7,
+            "question": "<p>Perubahan wujud benda dari gas langsung menjadi padat disebut...\nA. Mengkristal\nB. Menyublim\nC. Mengembun\nD. Mencair</p>",
+            "answer": "A",
+            "discussion": "Mengkristal (atau deposisi) adalah proses perubahan wujud zat dari gas menjadi padat tanpa melalui fase cair."
+        },
+        {
+            "id": 8,
+            "question": "<p>Jika harga 5 buah buku tulis adalah Rp15.000, maka harga 8 buah buku tulis yang sama adalah...\nA. Rp20.000\nB. Rp24.000\nC. Rp28.000\nD. Rp30.000</p>",
+            "answer": "B",
+            "discussion": "Harga 1 buku = Rp15.000 / 5 = Rp3.000. Harga 8 buku = 8 x Rp3.000 = Rp24.000."
+        },
+        {
+            "id": 9,
+            "question": "<p>Komponen biotik dalam suatu ekosistem yang berperan sebagai produsen adalah...\nA. Tumbuhan hijau\nB. Hewan herbivora\nC. Jamur\nD. Bakteri pengurai</p>",
+            "answer": "A",
+            "discussion": "Tumbuhan hijau berperan sebagai produsen karena mampu melakukan fotosintesis untuk menghasilkan makanannya sendiri."
+        },
+        {
+            "id": 10,
+            "question": "<p>Alat optik yang digunakan untuk melihat benda-benda yang sangat kecil agar tampak lebih besar dan jelas adalah...\nA. Teleskop\nB. Periskop\nC. Mikroskop\nD. Kamera</p>",
+            "answer": "C",
+            "discussion": "Mikroskop dirancang khusus untuk memperbesar bayangan benda mikro atau sangat kecil seperti sel dan bakteri."
+        },
+        {
+            "id": 11,
+            "question": "<p>Hasil dari -12 + 7 - (-5) adalah...\nA. -10\nB. -12\nC. 0\nD. 10</p>",
+            "answer": "C",
+            "discussion": "Perhitungannya: -12 + 7 = -5. Kemudian -5 - (-5) menjadi -5 + 5 = 0."
+        },
+        {
+            "id": 12,
+            "question": "<p>Organ manusia yang berfungsi memompa darah ke seluruh tubuh adalah...\nA. Paru-paru\nB. Jantung\nC. Hati\nD. Ginjal</p>",
+            "answer": "B",
+            "discussion": "Jantung memompa darah melalui sistem peredaran darah besar dan kecil untuk menyuplai oksigen ke seluruh tubuh."
+        },
+        {
+            "id": 13,
+            "question": "<p>Sebuah balok memiliki panjang 10 cm, lebar 5 cm, dan tinggi 4 cm. Volume balok tersebut adalah...\nA. 100 cm³\nB. 150 cm³\nC. 200 cm³\nD. 250 cm³</p>",
+            "answer": "C",
+            "discussion": "Volume balok = p x l x t = 10 cm x 5 cm x 4 cm = 200 cm³."
+        },
+        {
+            "id": 14,
+            "question": "<p>Bagian darah yang berfungsi mengangkut oksigen ke seluruh jaringan tubuh adalah...\nA. Plasma darah\nB. Sel darah putih\nC. Keping darah\nD. Sel darah merah</p>",
+            "answer": "D",
+            "discussion": "Sel darah merah (eritrosit) mengandung hemoglobin yang mengikat dan mengedarkan oksigen ke seluruh tubuh."
+        },
+        {
+            "id": 15,
+            "question": "<p>Gaya yang bekerja pada permukaan dua benda yang saling bersentuhan dan arahnya berlawanan dengan arah gerak benda disebut...\nA. Gaya pegas\nB. Gaya gravitasi\nC. Gaya gesek\nD. Gaya magnet</p>",
+            "answer": "C",
+            "discussion": "Gaya gesek selalu timbul akibat sentuhan dua permukaan dan arahnya menghambat arah gerak benda."
+        },
+        {
+            "id": 16,
+            "question": "<p>Larutan yang mengubah warna kertas lakmus merah menjadi biru memiliki sifat...\nA. Asam\nB. Basa\nC. Netral\nD. Garam</p>",
+            "answer": "B",
+            "discussion": "Zat yang bersifat basa akan mengubah lakmus merah menjadi biru, sedangkan lakmus biru akan tetap biru."
+        },
+        {
+            "id": 17,
+            "question": "<p>Persamaan kuadrat x² - 5x + 6 = 0 memiliki akar-akar...\nA. x = 1 atau x = 6\nB. x = 2 atau x = 3\nC. x = -2 atau x = -3\nD. x = -1 atau x = -6</p>",
+            "answer": "B",
+            "discussion": "Faktorkan persamaan: (x - 2)(x - 3) = 0. Maka didapatkan nilai x = 2 atau x = 3."
+        },
+        {
+            "id": 18,
+            "question": "<p>Suhu tubuh normal manusia berkisar pada angka 37°C. Jika dinyatakan dalam skala Fahrenheit, nilai tersebut setara dengan...\nA. 95°F\nB. 96,8°F\nC. 98,6°F\nD. 100°F</p>",
+            "answer": "C",
+            "discussion": "Konversi Celsius ke Fahrenheit: F = (9/5 x C) + 32 = (9/5 x 37) + 32 = 66,6 + 32 = 98,6°F."
+        },
+        {
+            "id": 19,
+            "question": "<p>Proses fotosintesis pada tumbuhan hijau membutuhkan bahan utama berupa...\nA. Oksigen dan nitrogen\nB. Karbondioksida dan air\nC. Karbondioksida dan hidrogen\nD. Oksigen dan glukosa</p>",
+            "answer": "B",
+            "discussion": "Fotosintesis membutuhkan Karbondioksida (CO₂) dari udara dan Air (H₂O) dari tanah dengan bantuan cahaya matahari."
+        },
+        {
+            "id": 20,
+            "question": "<p>Sebuah lampu pijar memiliki hambatan 40 ohm dan dihubungkan dengan sumber tegangan 220 volt. Kuat arus yang mengalir adalah...\nA. 4,5 A\nB. 5,0 A\nC. 5,5 A\nD. 6,0 A</p>",
+            "answer": "C",
+            "discussion": "Menggunakan Hukum Ohm: I = V / R. Maka I = 220 V / 40 ohm = 5,5 A."
+        }
+    ]
+}
