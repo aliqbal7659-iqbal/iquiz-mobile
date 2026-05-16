@@ -27,7 +27,7 @@ class _ModulDetailPageState extends State<ModulDetailPage> {
         mute: false,
         disableDragSeek: false,
         loop: false,
-        isLive: true,
+        isLive: false,
         forceHD: false,
         enableCaption: true,
       ),
