@@ -6,6 +6,7 @@ import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/pages/login_page.dart';
 import 'package:iquiz/src/features/home/presentation/pages/home_page.dart';
+import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
 import 'package:iquiz/src/features/splash/presentation/pages/splash_page.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               di.sl<AuthCheckBloc>()..add(AuthChecked(isFromSplash: true)),
         ),
+        BlocProvider(create: (context) => di.sl<MateriBloc>()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {

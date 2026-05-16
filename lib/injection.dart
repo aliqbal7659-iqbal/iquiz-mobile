@@ -9,6 +9,12 @@ import 'package:iquiz/src/features/auth/domain/usecases/auth_logout.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_register.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
+import 'package:iquiz/src/features/materi/data/datasources/materi_local_datasource.dart';
+import 'package:iquiz/src/features/materi/data/repositories/materi_repository_impl.dart';
+import 'package:iquiz/src/features/materi/domain/repositories/materi_repository.dart';
+import 'package:iquiz/src/features/materi/domain/usecases/get_materi.dart';
+import 'package:iquiz/src/features/materi/domain/usecases/search_materi.dart';
+import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
 import 'package:iquiz/src/shared/data/datasources/theme_local_datasource.dart';
 import 'package:iquiz/src/shared/data/repositories/theme_repository_impl.dart';
 import 'package:iquiz/src/shared/domain/repositories/theme_repository.dart';
@@ -35,6 +41,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthRegister(sl()));
   sl.registerLazySingleton(() => AuthCheck(sl()));
   sl.registerLazySingleton(() => AuthLogout(sl()));
+  sl.registerLazySingleton(() => GetMateri(sl()));
+  sl.registerLazySingleton(() => SearchMateri(sl()));
 
   /// Repositories
   sl.registerLazySingleton<ThemeRepository>(
@@ -42,6 +50,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(localDatasource: sl()),
+  );
+  sl.registerLazySingleton<MateriRepository>(
+    () => MateriRepositoryImpl(datasource: sl()),
   );
 
   /// Datasource
@@ -51,12 +62,18 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(sl()),
   );
+  sl.registerLazySingleton<MateriLocalDatasource>(
+    () => MateriLocalDataSourceImpl(),
+  );
 
   /// Blocs
   sl.registerLazySingleton(
     () => AuthBloc(authLogin: sl(), authRegister: sl(), authLogout: sl()),
   );
   sl.registerLazySingleton(() => AuthCheckBloc(authCheck: sl()));
+  sl.registerLazySingleton(
+    () => MateriBloc(getMateri: sl(), searchMateri: sl()),
+  );
 
   /// Helper
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

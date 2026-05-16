@@ -3,3 +3,9 @@ class DatabaseException implements Exception {
 
   DatabaseException(this.message);
 }
+
+class ServerException implements Exception {
+  final String message;
+
+  ServerException({required this.message});
+}
