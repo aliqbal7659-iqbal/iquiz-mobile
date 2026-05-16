@@ -74,6 +74,19 @@ class AppTheme {
       ),
     ),
 
+    /// Text Theme
+    textTheme: TextTheme(
+      bodyMedium: AppFont.interMediumRegular.copyWith(
+        color: AppPalette.textPrimary,
+      ),
+      labelLarge: AppFont.interxSmallRegular.copyWith(
+        color: AppPalette.textPrimary,
+      ),
+    ),
+
+    /// Card Theme
+    cardTheme: CardThemeData(color: AppPalette.backgroundWhite),
+
     /// Switch
     // switchTheme: SwitchThemeData(
     //   th
@@ -146,6 +159,19 @@ class AppTheme {
     listTileTheme: ListTileThemeData(
       contentPadding: EdgeInsets.zero,
       titleTextStyle: AppFont.interMediumBold.copyWith(
+        color: AppPalette.textPrimaryDark,
+      ),
+    ),
+
+    /// Card Theme
+    cardTheme: CardThemeData(color: AppPalette.backgroundDark),
+
+    /// Text Theme
+    textTheme: TextTheme(
+      bodyMedium: AppFont.interMediumRegular.copyWith(
+        color: AppPalette.textPrimaryDark,
+      ),
+      labelLarge: AppFont.interxSmallRegular.copyWith(
         color: AppPalette.textPrimaryDark,
       ),
     ),
