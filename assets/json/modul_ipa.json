@@ -1,0 +1,41 @@
+{
+    "message": "Success get modul ipa",
+    "data": [
+        {
+            "id": 1,
+            "name": "Mekanika dan Getaran",
+            "description": "Modul ini membahas tentang konsep dasar fisika yang meliputi pengukuran, gerak lurus, gaya, usaha, energi, tekanan, serta fenomena getaran, gelombang, dan bunyi dalam kehidupan sehari-hari.",
+            "course_link": "https://www.youtube.com/watch?v=wglGwxYFPpM"
+        },
+        {
+            "id": 2,
+            "name": "Optik dan Kelistrikan",
+            "description": "Modul ini mempelajari sifat-sifat cahaya pada cermin dan lensa, prinsip kerja alat optik, serta konsep kelistrikan mulai dari listrik statis, aliran listrik dinamis, hingga fenomena kemagnetan.",
+            "course_link": "https://www.youtube.com/watch?v=G6Cp6pOxQZU"
+        },
+        {
+            "id": 3,
+            "name": "Zat dan Karakteristiknya",
+            "description": "Modul kimia dasar yang membahas tentang wujud zat, klasifikasi materi (unsur, senyawa, campuran), sifat fisika dan kimia, serta perubahan zat termasuk konsep asam-basa.",
+            "course_link": "https://www.youtube.com/watch?v=nN09WFxuTDU"
+        },
+        {
+            "id": 4,
+            "name": "Makhluk Hidup dan Lingkungan",
+            "description": "Modul biologi yang mempelajari ciri-ciri makhluk hidup, sistem klasifikasi (taksonomi), interaksi dalam ekosistem, serta dampak pencemaran lingkungan terhadap kelangsungan hidup.",
+            "course_link": "https://www.youtube.com/watch?v=IVm9sgRVp-0"
+        },
+        {
+            "id": 5,
+            "name": "Struktur dan Fungsi Makhluk Hidup",
+            "description": "Modul ini mendalami sistem organisasi kehidupan mulai dari sel, jaringan, hingga struktur dan fungsi sistem organ utama pada tubuh manusia seperti pencernaan, pernapasan, dan peredaran darah.",
+            "course_link": "https://www.youtube.com/watch?v=4-r_NFyArPE"
+        },
+        {
+            "id": 6,
+            "name": "Bumi dan Tata Surya",
+            "description": "Modul yang membahas tentang struktur lapisan bumi, fenomena alam seperti gunung berapi dan gempa bumi, serta karakteristik komponen dalam sistem tata surya kita.",
+            "course_link": "https://www.youtube.com/watch?v=Bo6ZRipKWFo"
+        }
+    ]
+}

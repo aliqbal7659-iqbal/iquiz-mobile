@@ -11,13 +11,13 @@
             "id": 2,
             "name": "Bahasa Inggris",
             "modul_name": "modul_bing.json",
-            "total_modul": 0
+            "total_modul": 5
         },
         {
             "id": 3,
             "name": "Ilmu Pengetahuan Alam",
             "modul_name": "modul_ipa.json",
-            "total_modul": 0
+            "total_modul": 6
         }
     ]
 }

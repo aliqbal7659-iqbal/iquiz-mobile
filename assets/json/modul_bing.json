@@ -1,0 +1,35 @@
+{
+    "message": "Success get modul bahasa inggris",
+    "data": [
+        {
+            "id": 1,
+            "name": "Functional Texts",
+            "description": "Modul ini fokus pada pemahaman teks fungsional pendek yang sering digunakan dalam kehidupan sehari-hari, seperti announcement (pengumuman), advertisement (iklan), invitation (undangan), label produk, dan notice/pemberitahuan.",
+            "course_link": "https://www.youtube.com/watch?v=YYGSYjK__lA"
+        },
+        {
+            "id": 2,
+            "name": "Narrative and Descriptive Texts",
+            "description": "Modul ini melatih kemampuan memahami teks naratif berbentuk cerita (narrative/recount) untuk menghibur atau menceritakan masa lalu, serta teks deskripsi (descriptive) yang menggambarkan detail benda, tempat, atau seseorang.",
+            "course_link": "https://www.youtube.com/watch?v=Fdl8WLeTy3o"
+        },
+        {
+            "id": 3,
+            "name": "Informational Texts",
+            "description": "Modul yang membahas jenis teks penyampai informasi ilmiah atau argumen logis, seperti report text (laporan hasil pengamatan), procedure text (langkah membuat/melakukan sesuatu), dan exposition text (teks eksposisi).",
+            "course_link": "https://www.youtube.com/watch?v=ccBT_q1JIgc"
+        },
+        {
+            "id": 4,
+            "name": "Grammar and Language Features",
+            "description": "Modul yang mengulas aturan tata bahasa penting yang sering diujikan, seperti basic tenses (past, present, future), passive voice (kalimat pasif), conditional sentences (kalimat pengandaian), dan comparison degree (tingkat perbandingan).",
+            "course_link": "https://www.youtube.com/watch?v=UPB9syDY-iE"
+        },
+        {
+            "id": 5,
+            "name": "Reading Comprehension Strategies",
+            "description": "Modul taktis untuk menguasai strategi membaca cepat dan tepat, mulai dari mencari main idea (gagasan utama), menyimpulkan informasi tersurat/tersirat, memahami konteks kosakata (vocabulary), hingga menentukan rujukan kata (pronoun reference).",
+            "course_link": "https://www.youtube.com/watch?v=W7BW9gv_OkU"
+        }
+    ]
+}
