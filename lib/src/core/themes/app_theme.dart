@@ -50,7 +50,14 @@ class AppTheme {
     ),
 
     /// Appbar
-    appBarTheme: AppBarTheme(backgroundColor: AppPalette.backgroundWhite),
+    appBarTheme: AppBarTheme(
+      titleTextStyle: AppFont.interLargeRegular.copyWith(
+        fontSize: 17,
+        fontWeight: FontWeight.w600,
+        color: AppPalette.textPrimary,
+      ),
+      backgroundColor: AppPalette.backgroundWhite,
+    ),
 
     /// Bottom Navigation Bar
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -86,11 +93,6 @@ class AppTheme {
 
     /// Card Theme
     cardTheme: CardThemeData(color: AppPalette.backgroundWhite),
-
-    /// Switch
-    // switchTheme: SwitchThemeData(
-    //   th
-    // )
   );
 
   /// Dark Theme Mode
@@ -139,7 +141,14 @@ class AppTheme {
     ),
 
     /// Appbar
-    appBarTheme: AppBarTheme(backgroundColor: AppPalette.backgroundDark),
+    appBarTheme: AppBarTheme(
+      titleTextStyle: AppFont.interLargeRegular.copyWith(
+        fontSize: 17,
+        fontWeight: FontWeight.w600,
+        color: AppPalette.textPrimaryDark,
+      ),
+      backgroundColor: AppPalette.backgroundDark,
+    ),
 
     /// Bottom Navigation Bar
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
