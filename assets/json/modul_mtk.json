@@ -1,0 +1,35 @@
+{
+    "message": "Success get modul matematika",
+    "data": [
+        {
+            "id": 1,
+            "name": "Aljabar",
+            "description": "Aljabar adalah cabang matematika yang menggunakan simbol-simbol (biasanya huruf seperti x, y, z) untuk merepresentasikan angka dan merumuskan hubungan antara mereka melalui persamaan dan pertidaksamaan.",
+            "course_link": "https://www.youtube.com/watch?v=Fm7F0vVf9xM"
+        },
+        {
+            "id": 2,
+            "name": "Geometri",
+            "description": "Geometri adalah cabang matematika yang mempelajari tentang sifat-sikan garis, sudut, bidang, dan ruang, serta hubungan antar elemen-elemen tersebut seperti titik, bentuk, ukuran, dan posisi relatif benda.",
+            "course_link": "https://www.youtube.com/watch?v=kYJvEmsnAn4"
+        },
+        {
+            "id": 3,
+            "name": "Trigonometri",
+            "description": "Trigonometri adalah cabang matematika yang mempelajari hubungan antara panjang sisi dan besar sudut pada segitiga, khususnya segitiga siku-siku, serta fungsi periodik yang terkait.",
+            "course_link": "https://www.youtube.com/watch?v=bL82IofvYRI"
+        },
+        {
+            "id": 4,
+            "name": "Statistika",
+            "description": "Statistika adalah ilmu yang mempelajari bagaimana merencanakan, mengumpulkan, menganalisis, menginterpretasikan, dan mempresentasikan data untuk menarik kesimpulan atau mengambil keputusan di tengah ketidakpastian.",
+            "course_link": "https://www.youtube.com/watch?v=8mKIdr7xH5o"
+        },
+        {
+            "id": 5,
+            "name": "Kalkulus",
+            "description": "Kalkulus adalah cabang matematika yang mempelajari perubahan kontinunya suatu nilai, yang secara garis besar dibagi menjadi dua bagian utama: Kalkulus Diferensial (tentang laju perubahan) dan Kalkulus Integral (tentang akumulasi jumlah).",
+            "course_link": "https://www.youtube.com/watch?v=e_0pQ5K8LgM"
+        }
+    ]
+}

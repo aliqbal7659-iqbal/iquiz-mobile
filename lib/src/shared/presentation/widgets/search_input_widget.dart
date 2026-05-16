@@ -8,12 +8,14 @@ class SearchInputWidget extends StatelessWidget {
   final TextEditingController searchController;
   final TextEditingController searchedController;
   final void Function(String? value)? onSubmitted;
+  final void Function()? onReset;
 
   const SearchInputWidget({
     super.key,
     required this.searchController,
     required this.searchedController,
     this.onSubmitted,
+    this.onReset,
   });
 
   @override
@@ -45,6 +47,9 @@ class SearchInputWidget extends StatelessWidget {
   void onResetSearch() {
     searchedController.clear();
     searchController.clear();
+    if (onReset != null) {
+      onReset!();
+    }
   }
 
   void onSearchSubmitted(String value) {

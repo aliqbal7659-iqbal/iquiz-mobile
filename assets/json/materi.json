@@ -4,17 +4,20 @@
         {
             "id": 1,
             "name": "Matematika",
-            "modul_name": "modul_mtk"
+            "modul_name": "modul_mtk.json",
+            "total_modul": 5
         },
         {
             "id": 2,
             "name": "Bahasa Inggris",
-            "modul_name": "modul_bing"
+            "modul_name": "modul_bing.json",
+            "total_modul": 0
         },
         {
             "id": 3,
             "name": "Ilmu Pengetahuan Alam",
-            "modul_name": "modul_ipa"
+            "modul_name": "modul_ipa.json",
+            "total_modul": 0
         }
     ]
 }
