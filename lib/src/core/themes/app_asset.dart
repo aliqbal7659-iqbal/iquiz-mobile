@@ -5,4 +5,5 @@ class AppAsset {
   static String get icBook => '$_asset/ic_book.svg';
   static String get icSearch => '$_asset/ic_search.svg';
   static String get icChevronRight => '$_asset/ic_chevron_right.svg';
+  static String get icPlay => '$_asset/ic_play.svg';
 }

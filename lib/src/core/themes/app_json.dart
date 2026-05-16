@@ -1,5 +1,5 @@
 class AppJson {
-  static String get _asset => 'assets/json';
+  static String get asset => 'assets/json';
 
-  static String get materi => "$_asset/materi.json";
+  static String get materi => "$asset/materi.json";
 }

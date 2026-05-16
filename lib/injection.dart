@@ -10,11 +10,16 @@ import 'package:iquiz/src/features/auth/domain/usecases/auth_register.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
 import 'package:iquiz/src/features/materi/data/datasources/materi_local_datasource.dart';
+import 'package:iquiz/src/features/materi/data/datasources/modul_local_datasource.dart';
 import 'package:iquiz/src/features/materi/data/repositories/materi_repository_impl.dart';
+import 'package:iquiz/src/features/materi/data/repositories/modul_repository_impl.dart';
 import 'package:iquiz/src/features/materi/domain/repositories/materi_repository.dart';
+import 'package:iquiz/src/features/materi/domain/repositories/modul_repository.dart';
 import 'package:iquiz/src/features/materi/domain/usecases/get_materi.dart';
+import 'package:iquiz/src/features/materi/domain/usecases/get_modul.dart';
 import 'package:iquiz/src/features/materi/domain/usecases/search_materi.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
+import 'package:iquiz/src/features/materi/presentation/blocs/modul/modul_bloc.dart';
 import 'package:iquiz/src/shared/data/datasources/theme_local_datasource.dart';
 import 'package:iquiz/src/shared/data/repositories/theme_repository_impl.dart';
 import 'package:iquiz/src/shared/domain/repositories/theme_repository.dart';
@@ -43,6 +48,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthLogout(sl()));
   sl.registerLazySingleton(() => GetMateri(sl()));
   sl.registerLazySingleton(() => SearchMateri(sl()));
+  sl.registerLazySingleton(() => GetModul(sl()));
 
   /// Repositories
   sl.registerLazySingleton<ThemeRepository>(
@@ -53,6 +59,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<MateriRepository>(
     () => MateriRepositoryImpl(datasource: sl()),
+  );
+  sl.registerLazySingleton<ModulRepository>(
+    () => ModulRepositoryImpl(datasource: sl()),
   );
 
   /// Datasource
@@ -65,6 +74,9 @@ Future<void> init() async {
   sl.registerLazySingleton<MateriLocalDatasource>(
     () => MateriLocalDataSourceImpl(),
   );
+  sl.registerLazySingleton<ModulLocalDatasource>(
+    () => ModulLocalDataSourceImpl(),
+  );
 
   /// Blocs
   sl.registerLazySingleton(
@@ -74,6 +86,7 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => MateriBloc(getMateri: sl(), searchMateri: sl()),
   );
+  sl.registerLazySingleton(() => ModulBloc(getModul: sl()));
 
   /// Helper
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
+import 'package:iquiz/src/features/materi/domain/helpers/navigate_to_modul.dart';
 import 'package:iquiz/src/features/materi/presentation/blocs/materi/materi_bloc.dart';
 import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
@@ -96,9 +97,11 @@ class _MateriPageState extends State<MateriPage> {
                             return ListItemWidget(
                               title: data[index].name ?? "-",
                               subtitle: "${data[index].totalModul} Modul",
-                              onPressed: () {
-                                //
-                              },
+                              onPressed: () => NavigateToModul(
+                                context,
+                                modulJsonName: data[index].modulName ?? "",
+                                label: data[index].name ?? "-",
+                              ).execute(),
                             );
                           },
                         );
