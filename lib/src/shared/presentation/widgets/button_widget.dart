@@ -7,12 +7,14 @@ class ButtonWidget extends StatelessWidget {
   final String label;
   final bool isExpanded;
   final ButtonStyle? style;
+  final TextStyle? textStyle;
   const ButtonWidget({
     super.key,
     this.onPressed,
     required this.label,
     this.isExpanded = false,
     this.style,
+    this.textStyle,
   });
 
   @override
@@ -26,9 +28,9 @@ class ButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         label,
-        style: AppFont.interMediumBold.copyWith(
-          color: AppPalette.backgroundWhite,
-        ),
+        style:
+            textStyle ??
+            AppFont.interMediumBold.copyWith(color: AppPalette.backgroundWhite),
       ),
     );
   }

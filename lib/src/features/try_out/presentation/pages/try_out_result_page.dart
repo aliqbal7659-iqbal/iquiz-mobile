@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/try_out/domain/entities/tryout_answer.dart';
+import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
+import 'package:provider/provider.dart';
 
 class TryOutResultPage extends StatefulWidget {
   final List<TryoutAnswer> answeredQuestions;
@@ -79,17 +82,43 @@ class _TryOutResultPageState extends State<TryOutResultPage> {
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ButtonWidget(
-                      label: "Keluar",
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ],
+              Consumer<ThemeProvider>(
+                builder: (context, themeProvider, child) {
+                  final isDark = themeProvider.themeMode == ThemeMode.dark;
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: ButtonWidget(
+                          label: "Keluar",
+                          style: Theme.of(context).outlinedButtonTheme.style
+                              ?.copyWith(
+                                backgroundColor: WidgetStatePropertyAll(
+                                  isDark
+                                      ? AppPalette.borderDark
+                                      : AppPalette.borderSecondary,
+                                ),
+                                side: WidgetStatePropertyAll(
+                                  BorderSide(
+                                    color: isDark
+                                        ? AppPalette.borderDark
+                                        : AppPalette.borderSecondary,
+                                  ),
+                                ),
+                              ),
+                          textStyle: AppFont.interMediumBold.copyWith(
+                            color: isDark
+                                ? AppPalette.textPrimaryDark
+                                : AppPalette.textPrimary,
+                          ),
+
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
