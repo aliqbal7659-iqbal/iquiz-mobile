@@ -5,7 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_asset.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
+import 'package:iquiz/src/features/try_out/domain/entities/tryout_answer.dart';
 import 'package:iquiz/src/features/try_out/domain/entities/tryout_question.dart';
+import 'package:iquiz/src/features/try_out/domain/enums/option_answer.dart';
 import 'package:iquiz/src/features/try_out/presentation/blocs/try_out_question/try_out_question_bloc.dart';
 import 'package:iquiz/src/features/try_out/presentation/pages/question_nav_button_widget.dart';
 import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
@@ -36,6 +38,7 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
   late ScrollController _numberScrollController;
   ValueNotifier<int> currentPageNotifier = ValueNotifier(0);
   ValueNotifier<List<TryoutQuestion>> dataNotifier = ValueNotifier([]);
+  ValueNotifier<List<TryoutAnswer>> tryOutAnswerNotifier = ValueNotifier([]);
 
   @override
   void initState() {
@@ -113,9 +116,6 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
 
                   /// Soal
                   _buildQuestion(isDark),
-
-                  /// Jawaban
-                  _buildAnswer(context, isDark),
                 ],
               ),
             );
@@ -139,43 +139,56 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
     );
   }
 
-  Widget _buildAnswer(BuildContext context, bool isDark) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width,
-      color: isDark
-          ? AppPalette.backgroundScaffoldDark
-          : AppPalette.backgroundScaffold,
-      padding: EdgeInsets.all(10),
-      child: Row(
-        spacing: 38,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          QuestionNavButtonWidget(
-            number: "A",
-            width: 50,
-            height: 50,
-            onPressed: () {},
+  Widget _buildAnswer(BuildContext context, bool isDark, TryoutQuestion item) {
+    return ValueListenableBuilder(
+      valueListenable: tryOutAnswerNotifier,
+      builder: (context, answeredData, child) {
+        return Container(
+          width: MediaQuery.sizeOf(context).width,
+          color: isDark
+              ? AppPalette.backgroundScaffoldDark
+              : AppPalette.backgroundScaffold,
+          padding: EdgeInsets.all(10),
+          child: Row(
+            spacing: 38,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QuestionNavButtonWidget(
+                number: "A",
+                width: 50,
+                height: 50,
+                selected: OptionAnswer.A == getAnswer(item),
+                onPressed: () =>
+                    _answer(item: item, userAnswer: OptionAnswer.A),
+              ),
+              QuestionNavButtonWidget(
+                number: "B",
+                width: 50,
+                height: 50,
+                selected: OptionAnswer.B == getAnswer(item),
+                onPressed: () =>
+                    _answer(item: item, userAnswer: OptionAnswer.B),
+              ),
+              QuestionNavButtonWidget(
+                number: "C",
+                width: 50,
+                height: 50,
+                selected: OptionAnswer.C == getAnswer(item),
+                onPressed: () =>
+                    _answer(item: item, userAnswer: OptionAnswer.C),
+              ),
+              QuestionNavButtonWidget(
+                number: "D",
+                width: 50,
+                height: 50,
+                selected: OptionAnswer.D == getAnswer(item),
+                onPressed: () =>
+                    _answer(item: item, userAnswer: OptionAnswer.D),
+              ),
+            ],
           ),
-          QuestionNavButtonWidget(
-            number: "B",
-            width: 50,
-            height: 50,
-            onPressed: () {},
-          ),
-          QuestionNavButtonWidget(
-            number: "C",
-            width: 50,
-            height: 50,
-            onPressed: () {},
-          ),
-          QuestionNavButtonWidget(
-            number: "D",
-            width: 50,
-            height: 50,
-            onPressed: () {},
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -197,7 +210,12 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final item = data[index];
-                    return Html(data: item.question);
+                    return Column(
+                      children: [
+                        Expanded(child: Html(data: item.question)),
+                        _buildAnswer(context, isDark, item),
+                      ],
+                    );
                   },
                 ),
               );
@@ -288,6 +306,51 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
         );
       },
     );
+  }
+
+  OptionAnswer getAnswer(TryoutQuestion item) {
+    final currentAnswers = tryOutAnswerNotifier.value;
+    final questionIdToFind = item.id;
+
+    final exists = currentAnswers.any((a) => a.questionId == questionIdToFind);
+    if (exists) {
+      return currentAnswers
+          .where((a) => a.questionId == questionIdToFind)
+          .first
+          .userAnswer;
+    }
+    return OptionAnswer.none;
+  }
+
+  void _answer({
+    required TryoutQuestion item,
+    required OptionAnswer userAnswer,
+  }) {
+    final currentAnswers = tryOutAnswerNotifier.value;
+    final questionIdToFind = item.id;
+
+    final exists = currentAnswers.any((a) => a.questionId == questionIdToFind);
+
+    if (exists) {
+      tryOutAnswerNotifier.value = currentAnswers.map((answer) {
+        if (answer.questionId == questionIdToFind) {
+          return answer.copyWith(userAnswer: userAnswer);
+        }
+        return answer;
+      }).toList();
+      tryOutAnswerNotifier.value = tryOutAnswerNotifier.value;
+    } else {
+      final newAnswer = TryoutAnswer(
+        questionId: item.id ?? 0,
+        questions: item.question ?? "-",
+        discussion: item.discussion ?? "-",
+        isCorrect: userAnswer == item.answer,
+        correctAnswer: item.answer ?? OptionAnswer.none,
+        userAnswer: userAnswer,
+      );
+
+      tryOutAnswerNotifier.value = [...currentAnswers, newAnswer];
+    }
   }
 
   void _navigateToPage(int index) {
