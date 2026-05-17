@@ -43,10 +43,14 @@ class _HomeTabPageState extends State<HomeTabPage> {
             /// Image Banner
             Container(
               width: MediaQuery.sizeOf(context).width,
-              height: 171,
+              height: 200,
               decoration: BoxDecoration(
                 color: Colors.orange,
                 borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: AssetImage(AppAsset.ivBanner),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
 
