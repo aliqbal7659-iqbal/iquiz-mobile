@@ -6,6 +6,12 @@
             "fileName": "try_out_satu.json",
             "name": "Try-Out 2026",
             "question_total": 20
+        },
+        {
+            "id": 2,
+            "fileName": "try_out_dua.json",
+            "name": "Try-Out 2026 50 Soal",
+            "question_total": 50
         }
     ]
 }

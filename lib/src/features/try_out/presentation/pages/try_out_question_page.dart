@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_asset.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/try_out/domain/entities/tryout_answer.dart';
 import 'package:iquiz/src/features/try_out/domain/entities/tryout_question.dart';
 import 'package:iquiz/src/features/try_out/domain/enums/option_answer.dart';
+import 'package:iquiz/src/features/try_out/domain/helpers/navigate_to_result.dart';
+import 'package:iquiz/src/features/try_out/domain/utils/question_scor_count.dart';
 import 'package:iquiz/src/features/try_out/presentation/blocs/try_out_question/try_out_question_bloc.dart';
 import 'package:iquiz/src/features/try_out/presentation/pages/question_nav_button_widget.dart';
 import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
+import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -58,6 +60,8 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
     super.dispose();
     _pageController.dispose();
     currentPageNotifier.dispose();
+    tryOutAnswerNotifier.dispose();
+    dataNotifier.dispose();
   }
 
   @override
@@ -66,13 +70,43 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.label, maxLines: 1, overflow: TextOverflow.ellipsis),
+        actions: [
+          ValueListenableBuilder(
+            valueListenable: tryOutAnswerNotifier,
+            builder: (context, tryoutAnswer, child) {
+              final minimumToAnswer = dataNotifier.value.length * 50 / 100;
+              if (tryoutAnswer.isEmpty ||
+                  (tryoutAnswer.length < minimumToAnswer)) {
+                return SizedBox.shrink();
+              }
+              return ButtonWidget(
+                label: "Selesai",
+                onPressed: () {
+                  final score = QuestionScorCount(
+                    totalQuestion: dataNotifier.value.length,
+                    totalCorrect: tryOutAnswerNotifier.value
+                        .where((item) => item.isCorrect == true)
+                        .toList()
+                        .length,
+                  ).execute();
+
+                  NavigateToResult(
+                    context,
+                    answers: tryoutAnswer,
+                    score: score,
+                  ).execute();
+                },
+              );
+            },
+          ),
+          const SizedBox.square(dimension: 8),
+        ],
       ),
       body: SafeArea(
         child: BlocConsumer<TryOutQuestionBloc, TryOutQuestionState>(
           listener: (context, state) {
             if (state is TryOutQuestionSuccess) {
               dataNotifier.value = state.data;
-              logger.d(state.data);
             } else if (state is TryOutQuestionFailure) {
               ShowToastHelper(
                 context: context,
@@ -334,7 +368,10 @@ class _TryOutQuestionPageState extends State<TryOutQuestionPage>
     if (exists) {
       tryOutAnswerNotifier.value = currentAnswers.map((answer) {
         if (answer.questionId == questionIdToFind) {
-          return answer.copyWith(userAnswer: userAnswer);
+          return answer.copyWith(
+            userAnswer: userAnswer,
+            isCorrect: userAnswer == item.answer,
+          );
         }
         return answer;
       }).toList();
