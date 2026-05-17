@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
+import 'package:iquiz/src/features/try_out/domain/helpers/navigate_to_questions.dart';
 import 'package:iquiz/src/features/try_out/presentation/blocs/try_out/try_out_bloc.dart';
 import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
@@ -96,11 +97,11 @@ class _TryOutPageState extends State<TryOutPage> {
                             return ListItemWidget(
                               title: data[index].name ?? "-",
                               subtitle: "${data[index].questionTotal} Soal",
-                              // onPressed: () => NavigateToModul(
-                              //   context,
-                              //   modulJsonName: data[index].modulName ?? "",
-                              //   label: data[index].name ?? "-",
-                              // ).execute(),
+                              onPressed: () => NavigateToQuestions(
+                                context,
+                                fileName: data[index].fileName ?? "",
+                                label: data[index].name ?? "-",
+                              ).execute(),
                             );
                           },
                         );

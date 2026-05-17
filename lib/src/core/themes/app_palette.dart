@@ -11,6 +11,7 @@ class AppPalette {
   static const Color textSecondary = Color(0xFF828282);
   static const Color redMain = Color(0xFFFE2C55);
   static const Color border = Color(0xFFE0E0E0);
+  static const Color borderSecondary = Color(0xFFDADADA);
 
   /// Dark Mode Palette
   static const Color backgroundDark = Color.fromARGB(255, 0, 0, 0);

@@ -9,7 +9,6 @@ import 'package:iquiz/src/features/try_out/data/models/tryout_response.dart';
 abstract class TryoutLocalDatasource {
   Future<List<TryoutResponse>> getTryOut();
   Future<List<TryoutResponse>> searchTryOut({required String keyword});
-
   Future<List<TryoutQuestionResponse>> getQuestion({required String fileName});
 }
 
@@ -65,7 +64,9 @@ class TryoutLocalDatasourceImpl implements TryoutLocalDatasource {
     try {
       await Future.delayed(const Duration(milliseconds: 800));
 
-      final String jsonString = await rootBundle.loadString(AppJson.tryOut);
+      final String jsonString = await rootBundle.loadString(
+        "${AppJson.asset}/$fileName",
+      );
       final Map<String, dynamic> resp = await Future.value(
         jsonDecode(jsonString),
       );
