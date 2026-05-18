@@ -16,6 +16,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final DatabaseHelper databaseHelper;
 
   AuthLocalDataSourceImpl(this.databaseHelper);
+  static const USER_CACHE = 'user';
 
   @override
   Future<String> loginUser({
@@ -27,8 +28,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       if (resp == null) {
         throw DatabaseException("Email atau password Salah!");
       }
-      final prefs = SharedPreferencesAsync();
-      await prefs.setString('user', jsonEncode(resp.toJson()));
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(USER_CACHE, jsonEncode(resp.toJson(withId: true)));
       return "Login Berhasil!";
     } on DatabaseException catch (e) {
       throw DatabaseException(e.message);
@@ -52,8 +53,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<String> logout() async {
     try {
-      final prefs = SharedPreferencesAsync();
-      await prefs.remove('user');
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(USER_CACHE);
       return "Logout Berhasil";
     } catch (e) {
       throw DatabaseException(e.toString());
@@ -63,11 +64,12 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<UserTable?> checkAuthenticated() async {
     try {
-      final prefs = SharedPreferencesAsync();
-      final resp = await prefs.getString('user');
+      final prefs = await SharedPreferences.getInstance();
+      final resp = prefs.getString(USER_CACHE);
       if (resp == null) {
         throw DatabaseException("Akun Terlogout!");
       }
+
       return UserTable.fromMap(jsonDecode(resp));
     } catch (e) {
       throw DatabaseException(e.toString());

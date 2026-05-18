@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/auth/domain/usecases/auth_check.dart';
 
@@ -10,9 +11,8 @@ class AuthCheckBloc extends Bloc<AuthCheckEvent, AuthCheckState> {
 
   AuthCheckBloc({required this.authCheck}) : super(AuthCheckInitial()) {
     on<AuthChecked>((event, emit) async {
-      if (event.isFromSplash) {
-        await Future.delayed(const Duration(seconds: 2));
-      }
+      emit(AuthCheckInProgress());
+      await Future.delayed(const Duration(seconds: 1));
       final resp = await authCheck.execute();
       resp.fold(
         (l) => emit(AuthUnauthenticated()),

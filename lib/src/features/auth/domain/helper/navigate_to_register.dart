@@ -10,6 +10,6 @@ class NavigateToRegisterHelper {
     if (!context.mounted) return;
     Navigator.of(
       context,
-    ).push(MaterialPageRoute(builder: (context) => RegisterPage()));
+    ).pushReplacement(MaterialPageRoute(builder: (context) => RegisterPage()));
   }
 }

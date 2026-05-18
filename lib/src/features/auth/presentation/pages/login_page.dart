@@ -1,13 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/auth/domain/utils/submit_login.dart';
 import 'package:iquiz/src/features/auth/domain/helper/navigate_to_register.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
-import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
+import 'package:iquiz/src/shared/domain/helper/navigate_to_splash.dart';
 import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/domain/utils/validate_email.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
@@ -109,18 +108,13 @@ class _LoginPageState extends State<LoginPage> {
                             message: state.message,
                             type: ToastificationType.success,
                           ).execute();
-                          logger.i(state.message);
-                          BlocProvider.of<AuthCheckBloc>(
-                            context,
-                            listen: false,
-                          ).add(AuthChecked());
+                          NavigateToSplashHelper(context).execute();
                         } else if (state is AuthFailure) {
                           ShowToastHelper(
                             context: context,
                             message: state.message,
                             type: ToastificationType.error,
                           ).execute();
-                          logger.e(state.message);
                         }
                       }
                     },

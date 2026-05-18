@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iquiz/src/core/common/logger.dart';
 import 'package:iquiz/src/core/themes/app_font.dart';
 import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/auth/domain/helper/navigate_to_login.dart';
@@ -122,7 +121,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             message: state.message,
                             type: ToastificationType.success,
                           ).execute();
-                          logger.i(state.message);
                           NavigateToLoginHelper(context).execute();
                         } else if (state is AuthFailure) {
                           ShowToastHelper(
@@ -130,7 +128,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             message: state.message,
                             type: ToastificationType.error,
                           ).execute();
-                          logger.e(state.message);
                         }
                       }
                     },

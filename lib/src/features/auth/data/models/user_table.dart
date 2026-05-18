@@ -27,8 +27,8 @@ class UserTable {
     password: map['password'],
   );
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
+  Map<String, dynamic> toJson({bool withId = false}) => {
+    if (withId) 'id': id,
     'full_name': fullName,
     'email': email,
     'password': password,

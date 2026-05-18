@@ -5,9 +5,12 @@ import 'package:iquiz/src/core/themes/app_palette.dart';
 import 'package:iquiz/src/features/auth/domain/entities/user.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:iquiz/src/features/auth/presentation/blocs/auth_check/auth_check_bloc.dart';
+import 'package:iquiz/src/shared/domain/helper/navigate_to_splash.dart';
+import 'package:iquiz/src/shared/domain/helper/show_toast.dart';
 import 'package:iquiz/src/shared/presentation/providers/theme_provider.dart';
 import 'package:iquiz/src/shared/presentation/widgets/button_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
 class ProfileTabPage extends StatefulWidget {
   final ValueNotifier<User?> userNotifier;
@@ -70,10 +73,16 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                                   ModalRoute.of(context)?.isCurrent ?? false;
                               if (isCurrent) {
                                 if (state is AuthLogOutSuccess) {
+                                  ShowToastHelper(
+                                    context: context,
+                                    message: state.message,
+                                    type: ToastificationType.info,
+                                  );
                                   BlocProvider.of<AuthCheckBloc>(
                                     context,
                                     listen: false,
                                   ).add(AuthChecked());
+                                  NavigateToSplashHelper(context).execute();
                                 }
                               }
                             },
